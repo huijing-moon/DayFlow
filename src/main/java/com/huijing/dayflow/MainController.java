@@ -12,4 +12,6 @@ public class MainController {
     public String index(){
         return "안녕 뭉콩블로그";
     }
+
+
 }
