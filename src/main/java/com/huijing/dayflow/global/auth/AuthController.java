@@ -21,7 +21,7 @@ public class AuthController {
         authService.signup(request);
     }
 
-    @PostMapping("/logi n")
+    @PostMapping("/login")
     public TokenResponse login(@RequestBody LoginRequest request){
         return authService.login(request);
     }

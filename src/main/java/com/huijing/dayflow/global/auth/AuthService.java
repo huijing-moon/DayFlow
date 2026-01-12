@@ -23,11 +23,11 @@ public class AuthService {
             throw new RuntimeException("이미 존재하는 이메일");
         }
 
-        User user = new User(
-                request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
-                request.getNickname()
-        );
+        User user = User.builder()
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .nickname(request.getNickname())
+                .build();
 
         userRepository.save(user);
     }
