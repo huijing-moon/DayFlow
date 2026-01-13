@@ -1,6 +1,7 @@
 package com.huijing.dayflow.global.auth;
 
 import com.huijing.dayflow.global.auth.dto.LoginRequest;
+import com.huijing.dayflow.global.auth.dto.LoginResponse;
 import com.huijing.dayflow.global.auth.dto.SignupRequest;
 import com.huijing.dayflow.global.auth.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public TokenResponse login(@RequestBody LoginRequest request){
-        return authService.login(request);
+    public LoginResponse login(@RequestBody LoginRequest request) {
+        String token = authService.login(request);
+        return new LoginResponse(token);
     }
 
 }

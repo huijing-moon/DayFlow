@@ -33,16 +33,14 @@ public class AuthService {
     }
 
 
-    public TokenResponse login(LoginRequest request) {
+    public String login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("회원 없음"));
 
-        if (!passwordEncoder.matches(
-                request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("비밀번호 오류");
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("비밀번호 불일치");
         }
 
-        String token = jwtProvider.createToken(user.getId());
-        return new TokenResponse(token);
+        return jwtProvider.createToken(user.getId());
     }
 }
