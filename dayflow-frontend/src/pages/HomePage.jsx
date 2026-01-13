@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { getHome } from "../api/homeApi";
+import axiosInstance from "../api/axiosInstance";
 
 function HomePage() {
   const [home, setHome] = useState(null);
 
-  useEffect(() => {
-    getHome().then((res) => setHome(res.data));
-  }, []);
+    useEffect(() => {
+        axiosInstance.get("/api/home")
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err));
+    }, []);
 
   if (!home) return <div>로딩중...</div>;
 

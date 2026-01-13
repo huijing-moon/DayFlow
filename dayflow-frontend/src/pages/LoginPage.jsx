@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { login } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../api/axiosInstance";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
-        try {
-            const res = await login(email, password);
-            localStorage.setItem("accessToken", res.data.accessToken);
+    axiosInstance.post("/api/auth/login", {
+        email,
+        password,
+    })
+        .then(res => {
+            localStorage.setItem("token", res.data.token);
             navigate("/home");
-        } catch (e) {
-            alert("로그인 실패");
-        }
-    };
+        })
+        .catch(() => alert("로그인 실패"));
 
     return (
         <div>

@@ -37,7 +37,8 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())   //  추가
                 .httpBasic(basic -> basic.disable()) //  추가
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**",
+                                "/home").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
