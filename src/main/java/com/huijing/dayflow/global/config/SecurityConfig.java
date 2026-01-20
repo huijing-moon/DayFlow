@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .httpBasic(basic -> basic.disable()) //  추가
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**",
-                                "/home").permitAll()
+                                " day/home").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->

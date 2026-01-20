@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/home")
+@RequestMapping("/api")
 public class HomeController {
 
     private final HomeService homeService;
 
-//    @GetMapping
-//    public HomeResponseDto getHome(
-//            @AuthenticationPrincipal CustomUserDetails userDetails
-//    ) {
-//        return homeService.getHomeData(userDetails.getUser());
-//    }
+    @GetMapping("/home")
+    public String home() {
+        return "HOME OK";
+    }
 }

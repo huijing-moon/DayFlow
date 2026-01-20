@@ -20,7 +20,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+
+        System.out.println("Authorization = " + request.getHeader("Authorization"));
+
+
         String token = resolveToken(request);
+
+        System.out.println("Resolved token = " + token);
 
         if(token != null) {
             Long userId = jwtProvider.getUserId(token);
