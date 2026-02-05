@@ -1,0 +1,26 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import PrivateRoute from "./routes/PrivateRoute";
+import SignupPage from "./pages/SignupPage";
+
+function App() {
+  return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signupo" element={<SignupPage />} />
+          <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
+          />
+        </Routes>
+      </BrowserRouter>
+  );
+}
+
+export default App;
